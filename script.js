@@ -1,3 +1,74 @@
+//tracking scores
+let currentQuestionIndex = 0; 
+let score = 0; 
+
+//start button starts when clicked
+const startButton = document.getElementById("start-btn");
+startButton.addEventListener("click", startQuiz);
+
+//start quiz, hide start button
+function startQuiz() {
+    document.getElementById("start-btn").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+
+    displayQuestion()
+    startTimer()
+}
+
+//display questions
+function displayQuestion() {
+    const currentQuestion = quizQuestions[currentQuestionIndex];
+    document.getElementById("question").textContent = currentQuestion.question;
+
+    const optionsContainer = document.getElementById("options");
+    optionsContainer.innerHTML = ""; // Clear previous options
+
+    // Create buttons for each option and add event listeners
+    currentQuestion.options.forEach((option) => {
+        const optionButton = document.createElement("button");
+        optionButton.textContent = option;
+        optionButton.classList.add("option");
+        optionButton.addEventListener("click", function () {
+            checkAnswer(option);
+        });
+        optionsContainer.appendChild(optionButton);
+    });
+}
+
+function checkAnswer(userAnswer) {
+    const currentQuestion = quizQuestions[currentQuestionIndex];
+
+    // Check if the user's answer is correct
+    if (userAnswer === currentQuestion.answer) {
+        score++;
+    } else {
+        // If the answer is incorrect, subtract 10 seconds from the timer
+        timerValue -= 10;
+    }
+
+    // Move to the next question
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizQuestions.length) {
+        displayQuestion();
+    } else {
+        endQuiz();
+    }
+}
+
+//ending the quiz
+function endQuiz() {
+    clearInterval(timerInterval); //stop timer, hide quiz area
+    document.getElementById("quiz").style.display = "none";
+
+    // Display the user's final score
+    alert(`Quiz Over! Your score: ${score}`);
+    // high score memory
+
+    //reshow start quiz button
+    document.getElementById("start-btn").style.display = "block";
+}
+
+
 //timer
 let timerValue = 60;
 let timerInterval;
@@ -15,7 +86,6 @@ function startTimer() {
     }
   }, 1000); 
 }
-
 
 //quiz questions array
 let quizQuestions = [ 
