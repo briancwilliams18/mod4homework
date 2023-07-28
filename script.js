@@ -41,9 +41,11 @@ function checkAnswer(userAnswer) {
     // Check if the user's answer is correct
     if (userAnswer === currentQuestion.answer) {
         score++;
+        displayFeedback("Correct!");
     } else {
         // If the answer is incorrect, subtract 10 seconds from the timer
         timerValue -= 10;
+        displayFeedback("Incorrect!");
     }
 
     // Move to the next question
@@ -54,6 +56,11 @@ function checkAnswer(userAnswer) {
         endQuiz();
     }
 }
+//display correct/incorrect
+function displayFeedback(message) {
+    const feedbackElement = document.getElementById("feedback");
+    feedbackElement.textContent = message;
+}
 
 //ending the quiz
 function endQuiz() {
@@ -63,9 +70,12 @@ function endQuiz() {
     // Display the user's final score
     alert(`Quiz Over! Your score: ${score}`);
     // high score memory
-
-    //reshow start quiz button
-    document.getElementById("start-btn").style.display = "block";
+    let highestScore = localStorage.getItem("highestScore");
+     
+     if (!highestScore || score > parseInt(highestScore)) {
+        localStorage.setItem("highestScore", score);
+        alert(`Congratulations! You achieved a new high score: ${score}`);
+    }
 }
 
 
