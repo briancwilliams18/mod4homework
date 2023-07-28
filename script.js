@@ -1,3 +1,23 @@
+//timer
+let timerValue = 60;
+let timerInterval;
+
+function startTimer() {
+    document.getElementById("timer").textContent = timerValue;
+    //countdown
+    timerInterval = setInterval(function () {
+    timerValue--;
+    document.getElementById("timer").textContent = timerValue;
+
+    //check if timer ran out
+    if (timerValue <= 0) {
+        endQuiz(); 
+    }
+  }, 1000); 
+}
+
+
+//quiz questions array
 let quizQuestions = [ 
 {
     question: "what does 'DOM' stand for?",
@@ -24,4 +44,4 @@ let quizQuestions = [
     options: ["/* */", "#", "$ $", "//"],
     answer: "//"
 }
-]
+];
