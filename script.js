@@ -15,7 +15,6 @@ function startQuiz() {
     startTimer()
 }
 
-
 //display questions
 function displayQuestion() {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -57,6 +56,7 @@ function checkAnswer(userAnswer) {
         endQuiz();
     }
 }
+
 //display correct/incorrect
 function displayFeedback(message) {
     const feedbackElement = document.getElementById("feedback");

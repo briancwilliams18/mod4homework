@@ -1,0 +1,125 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  /* Header styles */
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    color: #007bff;
+  }
+  
+  /* Quiz styles */
+  #quiz {
+    display: none;
+  }
+  
+  #question {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .option {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .option:hover {
+    background-color: #0056b3;
+  }
+  
+  #feedback {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Start button styles */
+  #start-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #start-btn:hover {
+    background-color: #1d9238;
+  }
+  
+  /* Timer styles */
+  #timer {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* End message styles */
+  #end-message {
+    display: none;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  #final-score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Save score button styles */
+  #save-score-btn {
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #save-score-btn:hover {
+    background-color: #e0a800;
+  }
+  
+  /* High scores styles */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+    color: #007bff;
+  }
