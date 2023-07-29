@@ -62,10 +62,13 @@ function displayFeedback(message) {
     feedbackElement.textContent = message;
 }
 
-// ending the quiz
+//ending the quiz
 function endQuiz() {
-    clearInterval(timerInterval); // stop the timer, hide the quiz area
+    clearInterval(timerInterval); //stop timer, hide quiz area
     document.getElementById("quiz").style.display = "none";
+
+    // Show the end message
+    document.getElementById("end-message").style.display = "block";
 
     // Display the user's final score
     alert(`Quiz Over! Your score: ${score}`);
