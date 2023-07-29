@@ -62,39 +62,44 @@ function displayFeedback(message) {
     feedbackElement.textContent = message;
 }
 
-//ending the quiz
+// ending the quiz
 function endQuiz() {
-    clearInterval(timerInterval); //stop timer, hide quiz area
+    clearInterval(timerInterval); // stop the timer, hide the quiz area
     document.getElementById("quiz").style.display = "none";
 
     // Display the user's final score
     alert(`Quiz Over! Your score: ${score}`);
-    // high score memory
+
+    // High score memory
     let highestScore = localStorage.getItem("highestScore");
-     
-     if (!highestScore || score > parseInt(highestScore)) {
+    
+    if (!highestScore || score > parseInt(highestScore)) {
         localStorage.setItem("highestScore", score);
         alert(`Congratulations! You achieved a new high score: ${score}`);
+    } else {
+        alert(`Your highest score: ${highestScore}`);
     }
 }
 
-
-//timer
+// timer
 let timerValue = 60;
 let timerInterval;
 
 function startTimer() {
     document.getElementById("timer").textContent = timerValue;
-    //countdown
+    // countdown
     timerInterval = setInterval(function () {
-    timerValue--;
-    document.getElementById("timer").textContent = timerValue;
+        timerValue--;
+        // Prevent negative timer display
+        if (timerValue >= 0) {
+            document.getElementById("timer").textContent = timerValue;
+        }
 
-    //check if timer ran out
-    if (timerValue <= 0) {
-        endQuiz(); 
-    }
-  }, 1000); 
+        // check if timer ran out
+        if (timerValue <= 0) {
+            endQuiz();
+        }
+    }, 1000);
 }
 
 //quiz questions array
