@@ -15,6 +15,7 @@ function startQuiz() {
     startTimer()
 }
 
+
 //display questions
 function displayQuestion() {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -62,26 +63,54 @@ function displayFeedback(message) {
     feedbackElement.textContent = message;
 }
 
+// Display the high scores
+function displayHighScores() {
+    const savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+
+    // Sort scores in descending order based on the score value
+    savedScores.sort((a, b) => b.score - a.score);
+
+    const highScoresList = document.createElement("ul");
+    highScoresList.innerHTML = "<h2>High Scores:</h2>";
+
+    savedScores.forEach((savedScore) => {
+        const scoreItem = document.createElement("li");
+        scoreItem.textContent = `${savedScore.initials}: ${savedScore.score}`;
+        highScoresList.appendChild(scoreItem);
+    });
+
+    document.body.appendChild(highScoresList);
+}
+
 //ending the quiz
 function endQuiz() {
     clearInterval(timerInterval); //stop timer, hide quiz area
     document.getElementById("quiz").style.display = "none";
 
-    // Show the end message
-    document.getElementById("end-message").style.display = "block";
+    // Show the end message and final score
+    const endMessageElement = document.getElementById("end-message");
+    endMessageElement.style.display = "block";
+    const finalScoreElement = document.getElementById("final-score");
+    finalScoreElement.textContent = score;
 
-    // Display the user's final score
-    alert(`Quiz Over! Your score: ${score}`);
+   
+    // Save initials and score to local storage
+    const initialsInput = document.getElementById("initials");
+    const saveScoreButton = document.getElementById("save-score-btn");
+    saveScoreButton.addEventListener("click", function () {
+        const initials = initialsInput.value.trim().toUpperCase();
+        if (initials.length > 0) {
+            const savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+            savedScores.push({ initials, score });
+            localStorage.setItem("savedScores", JSON.stringify(savedScores));
+            alert("Score saved successfully!");
 
-    // High score memory
-    let highestScore = localStorage.getItem("highestScore");
-    
-    if (!highestScore || score > parseInt(highestScore)) {
-        localStorage.setItem("highestScore", score);
-        alert(`Congratulations! You achieved a new high score: ${score}`);
-    } else {
-        alert(`Your highest score: ${highestScore}`);
-    }
+            // Display high scores after saving
+            displayHighScores();
+        } else {
+            alert("Please enter your initials before saving the score.");
+        }
+    });
 }
 
 // timer
