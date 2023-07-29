@@ -18,3 +18,10 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
+
+
+<img src="assets\mod4 screenshot1.png" alt="javascript quiz start page">
+
+<img src="assets\mod 4 screenshot highscores.png" alt="javascript quiz questions">
+
+<img src="assets\mod 4 quiz screenshot.png" alt="javascript quiz display high scores">
